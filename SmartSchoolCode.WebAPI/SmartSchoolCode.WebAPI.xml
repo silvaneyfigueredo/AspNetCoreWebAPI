@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchoolCode.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchoolCode.WebAPI.V1.Controllers.AlunoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V1.Controllers.AlunoController.#ctor(SmartSchoolCode.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V1.Controllers.AlunoController.Get">
+            <summary>
+            Método responsável por retornar todos alunos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V1.Controllers.AlunoController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar o aluno por ID.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V1.Controllers.AlunoController.Post(SmartSchoolCode.WebAPI.V1.Dtos.AlunoRegistrarDto)">
+            <summary>
+            Método responsável pela inclusão do aluno
+            </summary>
+            <param name="alunoDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartSchoolCode.WebAPI.V1.Dtos.AlunoRegistrarDto">
+            <summary>
+            Modelo utilizado para inclusão de aluno
+            </summary>
+        </member>
+        <member name="T:SmartSchoolCode.WebAPI.V2.Controllers.AlunoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V2.Controllers.AlunoController.#ctor(SmartSchoolCode.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repository"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V2.Controllers.AlunoController.Get">
+            <summary>
+            Método responsável por retornar todos alunos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V2.Controllers.AlunoController.GetById(System.Int32)">
+            <summary>
+            Método responsável por retornar o aluno por ID.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchoolCode.WebAPI.V2.Controllers.AlunoController.Post(SmartSchoolCode.WebAPI.V2.Dtos.AlunoRegistrarDto)">
+            <summary>
+            Método responsável pela inclusão do aluno
+            </summary>
+            <param name="alunoDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartSchoolCode.WebAPI.V2.Dtos.AlunoRegistrarDto">
+            <summary>
+            Modelo utilizado para inclusão de aluno
+            </summary>
+        </member>
+    </members>
+</doc>

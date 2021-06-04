@@ -1,0 +1,5 @@
+CURSO Web API com ASP NET Core
+- Adicionando o migrations: dotnet ef migrations add Inicial
+- Criar a base de dados: dotnet ef database update
+- Rodar e "assistir" em tempo de execução o projeto: dotner watch run
+- Rodar o projeto: dotnet run

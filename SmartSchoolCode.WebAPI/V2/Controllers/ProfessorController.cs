@@ -1,61 +1,71 @@
-using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SmartSchoolCode.WebAPI.Data;
+using SmartSchoolCode.WebAPI.V2.Dtos;
 using SmartSchoolCode.WebAPI.Models;
+using System.Collections.Generic;
 
-namespace SmartSchoolCode.WebAPI.Controllers
+namespace SmartSchoolCode.WebAPI.V2.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
         private readonly IRepository _repository;
-        public ProfessorController(IRepository repository)
+        private readonly IMapper _mapper;
+        public ProfessorController(IRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         //[Route("~/api/Professores/")]
         [HttpGet]
         public IActionResult GetAll()
         {
-            var professores = _repository.GetAllProfessores(true);
-            return Ok(professores);
+            var professores = _repository.GetAllProfessores(false);
+
+            return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
         }
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var professor = _repository.GetProfessorById(id, true);
-            return Ok(professor);
+            var professor = _repository.GetProfessorById(id, false);
+            if(professor == null)
+                return BadRequest("Professor não encontrado");
+            return Ok(_mapper.Map<ProfessorDto>(professor));
         }
 
         [HttpGet("PorNome")]
         public IActionResult GetByName(string nome)
         {
             var professores = _repository.GetAllProfessoresByName(nome, true);
-            return Ok(professores);
+            return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
         }
 
         [HttpPost]
-        public IActionResult Post(Professor professor)
+        public IActionResult Post(ProfessorRegistrarDto professorDto)
         {
+            var professor = _mapper.Map<Professor>(professorDto);
             _repository.Add(professor);
             if(_repository.SaveChanges())
-                return Ok("Professor cadastrado com Sucesso!");
+                return Created($"/api/aluno/{professor.Id}", _mapper.Map<ProfessorDto>(professor));
 
             return BadRequest("Erro ao cadastrar o Professor");
         }
         
         [HttpPut]
-        public IActionResult Put(int id, Professor professor)
+        public IActionResult Put(int id, ProfessorRegistrarDto professorDto)
         {
-            var prof = _repository.GetProfessorById(id, false);
-            if(prof == null)
+            var professor = _repository.GetProfessorById(id, false);
+            if(professor == null)
                 return BadRequest("Professor não encontrado");
+
+            _mapper.Map(professorDto, professor);   
 
             _repository.Update(professor);
             if(_repository.SaveChanges())
-                return Ok("Professor alterado com Sucesso!");
+                return Created($"/api/aluno/{professor.Id}", _mapper.Map<ProfessorDto>(professor));
 
             return BadRequest("Erro ao alterar o Professor");
         }
